@@ -15,6 +15,10 @@ if ! test -f "/var/serveraccesslogging/message.txt"; then
   sudo cp message.txt /var/serveraccesslogging/message.txt
 fi
 
+if ! test -f "/var/serveraccesslogging/bot.py"; then
+  sudo cp bot.py /var/serveraccesslogging/bot.py
+fi
+
 #Copying notify script into the profile.d folder to make it execute on login
 sudo cp access-notify.sh /etc/profile.d/access-notify.sh
 
