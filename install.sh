@@ -15,12 +15,11 @@ if ! test -f "/var/serveraccesslogging/message.txt"; then
   sudo cp message.txt /var/serveraccesslogging/message.txt
 fi
 
-if ! test -f "/var/serveraccesslogging/bot.py"; then
-  sudo cp bot.py /var/serveraccesslogging/bot.py
-fi
-
+sudo cp bot.py /var/serveraccesslogging/bot.py
 #Copying notify script into the profile.d folder to make it execute on login
 sudo cp access-notify.sh /etc/profile.d/access-notify.sh
+
+sudo cp var.py /etc/profile.d/var.py
 
 echo "Completed! Now the file .env.local is in this folder: /var/serveraccesslogging/.env.local, and you can customize the message in the same folder but in the file message.txt"
 
