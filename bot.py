@@ -1,16 +1,15 @@
-from telegram.ext.updater import Updater
-from telegram.update import Update
-from telegram.ext.callbackcontext import CallbackContext
-from telegram.ext.commandhandler import CommandHandler
-from telegram.ext.messagehandler import MessageHandler
-from telegram.ext.filters import Filters
-import telegram
 import os
-import subprocess
-import json
 from importlib.machinery import SourceFileLoader
 
-var = SourceFileLoader("var","/etc/profile.d/var.py").load_module()
+import telegram
+from telegram.ext.callbackcontext import CallbackContext
+from telegram.ext.commandhandler import CommandHandler
+from telegram.ext.filters import Filters
+from telegram.ext.messagehandler import MessageHandler
+from telegram.ext.updater import Updater
+from telegram.update import Update
+
+# var = SourceFileLoader("var","/etc/profile.d/var.py").load_module()
 
 TOKEN = os.environ.get('TOKEN')
 USER_ID = os.environ.get('USER')
@@ -36,17 +35,14 @@ def unknown(update: Update, context: CallbackContext):
 
 
 def unknown_text(update: Update, context: CallbackContext):
-	update.message.reply_text(
-		"i can't understand '%s'" % update.message.text)
+	update.message.reply_text("i can't understand '%s'" % update.message.text)
 
 def start(update: Update, context: CallbackContext):
-    update.message.reply_text(
-		"Welcome user" % update.message.text)
+    update.message.reply_text("Welcome user" % update.message.text)
 
 updater.dispatcher.add_handler(CommandHandler('closelast', closelast))
 updater.dispatcher.add_handler(MessageHandler(Filters.text, unknown))
-updater.dispatcher.add_handler(MessageHandler(
-	Filters.command, unknown))
+updater.dispatcher.add_handler(MessageHandler(Filters.command, unknown))
 updater.dispatcher.add_handler(MessageHandler(Filters.text, unknown_text))
 
 updater.start_polling()
