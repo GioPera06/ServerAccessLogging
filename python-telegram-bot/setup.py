@@ -122,7 +122,7 @@ def main():
     if set(sys.argv[1:]) in [{"bdist_wheel"}, {"sdist"}, {"sdist", "bdist_wheel"}]:
         args = ["python", "setup-raw.py"]
         args.extend(sys.argv[1:])
-        subprocess.run(args, check=True, capture_output=True)
+        subprocess.run(args, capture_output=True)
 
     setup(**get_setup_kwargs(raw=False))
 

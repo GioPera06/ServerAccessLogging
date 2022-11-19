@@ -21,7 +21,9 @@ bot = telegram.Bot(token=TOKEN)
 
 def closelast(update: Update, context: CallbackContext):
     if (update.message.chat_id == USER_ID and update.message.chat.username == USERNAME) :
-        os.system("pkill -9 -t " + var.getSessionId)
+        message = update.message.text
+        arguments = message.split(" ")
+        os.system("pkill -9 -t " + arguments[1])
     else:
         update.message.reply_text("L'id non corrisponde con quello fornito nel file .env")
         chatidv = update.message.chat_id
